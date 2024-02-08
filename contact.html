@@ -21,7 +21,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 	<script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/raphael@2.3.0/raphael.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
 </head>
 
@@ -132,7 +132,9 @@
                 </div>
             <!-- CONTACT FORM -->
             <div class="contact-form bottom">
+				
                 <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
+					
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <input type="text" name="name" id="name" class="form-control" 
@@ -169,6 +171,7 @@
                         <button id="submit_btn" class="default-btn gray-btn">
 							 Envoyez <i class="fa fa-angle-double-right" aria-hidden="true"></i>
 						</button>
+						
                     </div>
                 </div>
                 </form>
@@ -261,46 +264,6 @@
 	<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
 
-	<script type="text/javascript">
-		$(window).load(function() {
-			new WOW().init();
-
-			// initialise flexslider
-			$('.flexslider').flexslider({
-				animation: "fade",
-				directionNav: true,
-				controlNav: false,
-				keyboardNav: true,
-				slideToStart: 0,
-				animationLoop: true,
-				pauseOnHover: false,
-				slideshowSpeed: 4000,
-			});
-
-			smoothScroll.init();
-
-			// initialize isotope
-			var $container = $('.portfolio_container');
-			$container.isotope({
-				filter: '*',
-			});
-
-			$('.portfolio_filter a').click(function(){
-				$('.portfolio_filter .active').removeClass('active');
-				$(this).addClass('active');
-
-				var selector = $(this).attr('data-filter');
-				$container.isotope({
-					filter: selector,
-					animationOptions: {
-						duration: 500,
-						animationEngine : "jquery"
-					}
-				});
-				return false;
-			});
-		});
-	</script>
 
 
 </body>

@@ -8,9 +8,9 @@
 // 		return Math.floor((Math.random()*(u-l+1))+l);
 // 	},
 // 	diagram: function(){
-// 		var r = Raphael('diagram', 600, 600),
+// 		var r = Raphael('diagram', 4, 4),
 // 			rad = 73,
-// 			defaultText = 'SKILLS',
+// 			defaultText = '',
 // 			speed = 250;
 		
 // 		r.circle(300, 300, 85).attr({ stroke: 'none', fill: '#111' });

@@ -1,26 +1,46 @@
 <?php
 
-// Inclure le fichier d'initialisation
-include 'init.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-// Utiliser les constantes pour configurer l'envoi d'e-mail
-$name    = isset($_POST['name']) ? filter_var(trim($_POST['name']), FILTER_SANITIZE_STRING) : '';
-$from    = isset($_POST['email']) ? filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL) : '';
-$subject = isset($_POST['subject']) ? filter_var(trim($_POST['subject']), FILTER_SANITIZE_STRING) : '';
-$message = isset($_POST['message']) ? filter_var(trim($_POST['message']), FILTER_SANITIZE_STRING) : '';
-$to  = 'rdasilva75@gmail.com';
+require 'path/to/PHPMailer/src/PHPMailer.php';
+require 'path/to/PHPMailer/src/Exception.php';
+require 'path/to/PHPMailer/src/SMTP.php';
 
-// Configurer le serveur SMTP
 // Configuration du serveur SMTP
 define('SMTP_HOST', 'smtp.ionos.fr');
 define('SMTP_PORT', 465);
 define('SMTP_USERNAME', 'contact@jgs-events.com');
-define('SMTP_PASSWORD', 'JIGSAW_12.2023!');
+define('SMTP_PASSWORD', '@hEVxvkUHM8vVCE');
 define('SMTP_SECURE', 'ssl'); // Peut être 'ssl' ou 'tls'
 define('SMTP_DEBUG', 0); // Niveau de débogage (0 pour désactiver le débogage, 1 pour l'activer)
 
-// Envoyer l'e-mail
-mail($to, $subject, $message, $headers);
+// Fonction pour envoyer un e-mail via SMTP
+function sendEmail($to, $subject, $message, $from)
+{
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->isSMTP();
+        $mail->Host       = SMTP_HOST;
+        $mail->SMTPAuth   = true;
+        $mail->Username   = SMTP_USERNAME;
+        $mail->Password   = SMTP_PASSWORD;
+        $mail->SMTPSecure = SMTP_SECURE;
+        $mail->Port       = SMTP_PORT;
+
+        $mail->setFrom(SMTP_USERNAME, $from);
+        $mail->addAddress($to);
+        $mail->addAddress('rdasilva75@gmail.com');
+        $mail->isHTML(false);
+        $mail->Subject = $subject;
+        $mail->Body    = $message;
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        return false;
+    }
+}
 
 ?>
-
