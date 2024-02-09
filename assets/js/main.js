@@ -85,22 +85,48 @@
 
 		 // Contact form
 		 $(document).ready(function() {
-			var form = $('#main-contact-form');
-		
-			form.submit(function(event) {
-				event.preventDefault();
-				var form_status = $('<div class="form_status"></div>');
-		
+			$('#contact-form').submit(function(e) {
+				e.preventDefault(); // Empêche l'envoi du formulaire par défaut
+				
+				// Récupérer les données du formulaire
+				var formData = $(this).serialize();
+				
+				// Envoyer les données du formulaire à sendemail.php en utilisant AJAX
 				$.ajax({
-					url: $(this).attr('action'),
-					beforeSend: function(){
-				  form.prepend( form_status.html('<p><i class="fa fa-spinner fa-spin"></i> Email is sending...</p>').fadeIn() );
-				}
-		  }).done(function(data) {
-					form_status.html('<p class="text-success">' + data.message + '</p>').delay(3000).fadeOut();
+					type: 'POST',
+					url: 'sendemail.php',
+					data: formData,
+					success: function(response) {
+						// Afficher la réponse du serveur dans la console ou dans une boîte de dialogue
+						console.log(response);
+					},
+					error: function(xhr, status, error) {
+						// Gérer les erreurs éventuelles
+						console.error(xhr.responseText);
+					}
 				});
 			});
 		});
+
+
+
+		//  $(document).ready(function() {
+		// 	var form = $('#main-contact-form');
+		
+		// 	form.submit(function(event) {
+		// 		event.preventDefault();
+		// 		var form_status = $('<div class="form_status"></div>');
+		
+		// 		$.ajax({
+		// 			url: $(this).attr('action'),
+		// 			beforeSend: function(){
+		// 		  form.prepend( form_status.html('<p><i class="fa fa-spinner fa-spin"></i> En cours...</p>').fadeIn() );
+		// 		}
+		//   }).done(function(data) {
+		// 			form_status.html('<p class="text-success">' + data.message + '</p>').delay(3000).fadeOut();
+		// 		});
+		// 	});
+		// });
 			
 
 

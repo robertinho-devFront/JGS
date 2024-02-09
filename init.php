@@ -1,46 +1,25 @@
 <?php
+error_reporting(E_ALL);
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+$name       = isset($_POST['name']) ? trim($_POST['name']) : '';
+$lastname   = isset($_POST['lastname']) ? trim($_POST['lastname']) : '';
+$function   = isset($_POST['function']) ? trim($_POST['function']) : '';
+$from       = isset($_POST['email']) ? trim($_POST['email']) : '';
+$tel        = isset($_POST['tel']) ? trim($_POST['tel']) : '';
+$company    = isset($_POST['company']) ? trim($_POST['company']) : '';
+$subject    = isset($_POST['subject']) ? trim($_POST['subject']) : 'Message depuis le formulaire de contact';
+$message    = isset($_POST['message']) ? trim($_POST['message']) : '';
+$to         = 'contact@jgs-events.com';
 
-require 'path/to/PHPMailer/src/PHPMailer.php';
-require 'path/to/PHPMailer/src/Exception.php';
-require 'path/to/PHPMailer/src/SMTP.php';
+$headers   = array();
+$headers[] = "MIME-Version: 1.0";
+$headers[] = "Content-type: text/plain; charset=UTF-8"; // Utilisation de l'encodage UTF-8
+$headers[] = "From: {$name} <{$from}>";
+$headers[] = "Reply-To: <{$from}>";
 
-// Configuration du serveur SMTP
-define('SMTP_HOST', 'smtp.ionos.fr');
-define('SMTP_PORT', 465);
-define('SMTP_USERNAME', '');
-define('SMTP_PASSWORD', '');
-define('SMTP_SECURE', 'ssl'); // Peut être 'ssl' ou 'tls'
-define('SMTP_DEBUG', 0); // Niveau de débogage (0 pour désactiver le débogage, 1 pour l'activer)
-
-// Fonction pour envoyer un e-mail via SMTP
-function sendEmail($to, $subject, $message, $from)
-{
-    $mail = new PHPMailer(true);
-
-    try {
-        $mail->isSMTP();
-        $mail->Host       = SMTP_HOST;
-        $mail->SMTPAuth   = true;
-        $mail->Username   = SMTP_USERNAME;
-        $mail->Password   = SMTP_PASSWORD;
-        $mail->SMTPSecure = SMTP_SECURE;
-        $mail->Port       = SMTP_PORT;
-
-        $mail->setFrom(SMTP_USERNAME, $from);
-        $mail->addAddress($to);
-        $mail->addAddress('rdasilva75@gmail.com');
-        $mail->isHTML(false);
-        $mail->Subject = $subject;
-        $mail->Body    = $message;
-
-        $mail->send();
-        return true;
-    } catch (Exception $e) {
-        return false;
-    }
+if (mail($to, $subject, $message, implode("\r\n", $headers))) {
+    echo 'Le message a été envoyé avec succès.';
+} else {
+    echo 'Une erreur est survenue lors de l\'envoi du message.';
 }
-
 ?>
