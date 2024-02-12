@@ -83,9 +83,50 @@
 
 
 
-		 // Contact form
-		 $(document).ready(function() {
-			$('#contact-form').submit(function(e) {
+		// $(document).ready(function() {
+		// 	$('#contact-form').submit(function(e) {
+		// 		e.preventDefault(); // Empêche l'envoi du formulaire par défaut
+				
+		// 		// Récupérer les données du formulaire
+		// 		var formData = $(this).serialize();
+				
+		// 		// Envoyer les données du formulaire à sendemail.php en utilisant AJAX
+		// 		$.ajax({
+		// 			type: 'POST',
+		// 			url: 'sendemail.php',
+		// 			data: formData,
+		// 			success: function(response) {
+		// 				// Afficher la réponse du serveur dans la console ou dans une boîte de dialogue
+		// 				console.log(response);
+		// 			},
+		// 			error: function(xhr, status, error) {
+		// 				// Gérer les erreurs éventuelles
+		// 				console.error(xhr.responseText);
+		// 			}
+		// 		});
+		// 	});
+		// });
+		
+		// // Version avec $.submit()
+		// $(document).ready(function() {
+		// 	var form = $('#main-contact-form');
+		
+		// 	form.submit(function(event) {
+		// 		event.preventDefault();
+		// 		var form_status = $('<div class="form_status"></div>');
+		
+		// 		$.ajax({
+		// 			url: $(this).attr('action'),
+		// 			beforeSend: function(){
+		// 				form.prepend( form_status.html('<p><i class="fa fa-spinner fa-spin"></i> En cours...</p>').fadeIn() );
+		// 			}
+		// 		}).done(function(data) {
+		// 			form_status.html('<p class="text-success">' + data.message + '</p>').delay(3000).fadeOut();
+		// 		});
+		// 	});
+		// });
+		$(document).ready(function() {
+			$('#main-contact-form').submit(function(e) {
 				e.preventDefault(); // Empêche l'envoi du formulaire par défaut
 				
 				// Récupérer les données du formulaire
@@ -99,31 +140,19 @@
 					success: function(response) {
 						// Afficher la réponse du serveur dans la console ou dans une boîte de dialogue
 						console.log(response);
+						if (response === 'success') {
+							// Afficher un message de succès à l'utilisateur
+							alert('Votre message a été envoyé avec succès !');
+						} else {
+							// Afficher un message d'erreur à l'utilisateur
+							alert('Votre message a été envoyé avec succès !');
+						}
 					},
 					error: function(xhr, status, error) {
 						// Gérer les erreurs éventuelles
 						console.error(xhr.responseText);
+						alert('stop');
 					}
-				});
-			});
-		});
-
-
-
-		 $(document).ready(function() {
-			var form = $('#main-contact-form');
-		
-			form.submit(function(event) {
-				event.preventDefault();
-				var form_status = $('<div class="form_status"></div>');
-		
-				$.ajax({
-					url: $(this).attr('action'),
-					beforeSend: function(){
-				  form.prepend( form_status.html('<p><i class="fa fa-spinner fa-spin"></i> En cours...</p>').fadeIn() );
-				}
-		  }).done(function(data) {
-					form_status.html('<p class="text-success">' + data.message + '</p>').delay(3000).fadeOut();
 				});
 			});
 		});

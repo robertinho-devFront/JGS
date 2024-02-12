@@ -1,23 +1,46 @@
 <?php
-error_reporting(E_ALL);
+declare(strict_types=1);
 
-$name       = isset($_POST['name']) ? trim($_POST['name']) : '';
-$lastname   = isset($_POST['lastname']) ? trim($_POST['lastname']) : '';
-$function   = isset($_POST['function']) ? trim($_POST['function']) : '';
-$from       = isset($_POST['email']) ? trim($_POST['email']) : '';
-$tel        = isset($_POST['tel']) ? trim($_POST['tel']) : '';
-$company    = isset($_POST['company']) ? trim($_POST['company']) : '';
-$subject    = isset($_POST['subject']) ? trim($_POST['subject']) : 'Message depuis le formulaire de contact';
-$message    = isset($_POST['message']) ? trim($_POST['message']) : '';
+// Configuration du serveur SMTP
+define('SMTP_HOST', 'smtp.ionos.fr:465');
+// define('SMTP_PORT', 465);
+define('SMTP_USERNAME', 'contact@jgs-events.com');
+define('SMTP_PASSWORD', '@hEVxvkUHM8vVCE');
+define('SMTP_SECURE', 'ssl'); // Peut être 'ssl' ou 'tls'
+define('SMTP_DEBUG', 0); // Niveau de débogage (0 pour désactiver le débogage, 1 pour l'activer)
+
+// Fonction pour envoyer un e-mail via SMTP
+function sendEmail($to, $subject, $message, $from)
+{
+    // Construction des en-têtes
+    $headers   = [
+        "MIME-Version: 1.0",
+        "Content-type: text/plain; charset=UTF-8", // Utilisation de l'encodage UTF-8
+        "From: {$from} <{$from}>",
+        "Reply-To: <{$from}>"
+    ];
+
+    // Construction du corps du message
+    $message_body = "Subject: $subject\n\n$message";
+
+    // Envoi de l'e-mail via SMTP
+    $success = @mail($to, $subject, $message_body, implode("\r\n", $headers));
+    return $success;
+}
+
+// Récupération des données du formulaire
+$name       = $_POST['name'] ?? '';
+$lastname   = $_POST['lastname'] ?? '';
+$function   = $_POST['function'] ?? '';
+$from       = $_POST['email'] ?? '';
+$tel        = $_POST['tel'] ?? '';
+$company    = $_POST['company'] ?? '';
+$subject    = $_POST['subject'] ?? 'Message depuis le formulaire de contact';
+$message    = $_POST['message'] ?? '';
 $to         = 'contact@jgs-events.com';
 
-$headers   = array();
-$headers[] = "MIME-Version: 1.0";
-$headers[] = "Content-type: text/plain; charset=UTF-8"; // Utilisation de l'encodage UTF-8
-$headers[] = "From: {$name} <{$from}>";
-$headers[] = "Reply-To: <{$from}>";
-
-if (mail($to, $subject, $message, implode("\r\n", $headers))) {
+// Envoi de l'e-mail
+if (sendEmail($to, $subject, $message, $from)) {
     echo 'Le message a été envoyé avec succès.';
 } else {
     echo 'Une erreur est survenue lors de l\'envoi du message.';
