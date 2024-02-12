@@ -4,8 +4,8 @@ declare(strict_types=1);
 // Configuration du serveur SMTP
 define('SMTP_HOST', 'smtp.ionos.fr:465');
 // define('SMTP_PORT', 465);
-define('SMTP_USERNAME', 'contact@jgs-events.com');
-define('SMTP_PASSWORD', '@hEVxvkUHM8vVCE');
+define('SMTP_USERNAME', '   ');
+define('SMTP_PASSWORD', '   ');
 define('SMTP_SECURE', 'ssl'); // Peut être 'ssl' ou 'tls'
 define('SMTP_DEBUG', 0); // Niveau de débogage (0 pour désactiver le débogage, 1 pour l'activer)
 
