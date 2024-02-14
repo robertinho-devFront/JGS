@@ -2459,7 +2459,7 @@ ul.services-list li{
     font-weight: 300;
 }
 
-#tel,#function,#lastname,#name.form-control{
+#avatar,#tel,#function,#lastname,#name.form-control{
     width: 100%;
     height: 50px;
     padding: 10px;
