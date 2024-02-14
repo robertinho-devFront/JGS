@@ -12,9 +12,9 @@ $to = 'contact@jgs-events.com';
 
 // Construction du contenu du message
 $messageContent = "Nom: $name\n";
-$messageContent .= "Prénom: $lastname\n";
+$messageContent .= "Prenom: $lastname\n";
 $messageContent .= "Email: $from\n";
-$messageContent .= "Téléphone: $tel\n";
+$messageContent .= "Telephone: $tel\n";
 $messageContent .= "Sujet: $subject\n";
 $messageContent .= "Message:\n$message";
 
