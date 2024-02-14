@@ -1,3 +1,8 @@
+
+Bien sûr, pour s'assurer que toutes les informations sont correctement incluses dans le corps du message, je vais réviser le code pour m'assurer que toutes les variables sont définies et ajoutées au contenu du message. Voici le code mis à jour :
+
+php
+Copy code
 <?php
 declare(strict_types=1);
 
@@ -40,4 +45,3 @@ if (mail($to, $subject, $message, implode("\r\n", $headers))) {
     echo 'Une erreur est survenue lors de l\'envoi du message.';
 }
 ?>
-
