@@ -1,11 +1,22 @@
 <?php
 error_reporting(E_ALL);
 
+// Paramètres SMTP
+ini_set('SMTP', 'smtp.ionos.fr'); // Adresse du serveur SMTP
+ini_set('smtp_port', 465); // Port SMTP (SSL)
+ini_set('sendmail_from', 'contact@jgs-events.com'); // Adresse e-mail expéditeur par défaut
+
+$headers = array();
+$headers[] = "MIME-Version: 1.0";
+$headers[] = "Content-type: text/plain; charset=iso-8859-1";
+
 // Récupération des données du formulaire
 $name = $_POST['name'] ?? '';
 $lastname = $_POST['lastname'] ?? '';
+$function = $_POST['function'] ?? '';
 $from = $_POST['email'] ?? '';
 $tel = $_POST['tel'] ?? '';
+$company = $_POST['company'] ?? '';
 $subject = $_POST['subject'] ?? 'Message depuis le formulaire de contact';
 $message = $_POST['message'] ?? '';
 $to = 'contact@jgs-events.com';
@@ -30,8 +41,10 @@ if ($avatar && $avatar['error'] === UPLOAD_ERR_OK) {
 // Construction du contenu du message
 $messageContent = "Nom: $name\n";
 $messageContent .= "Prenom: $lastname\n";
+$messageContent .= "Fonction: $function\n";
 $messageContent .= "Email: $from\n";
 $messageContent .= "Telephone: $tel\n";
+$messageContent .= "Society: $company\n";
 $messageContent .= "Sujet: $subject\n";
 $messageContent .= "Message:\n$message\n";
 
@@ -41,7 +54,7 @@ if (!empty($avatarPath)) {
 }
 
 // Envoi de l'e-mail
-if (mail($to, $subject, $messageContent)) {
+if (mail($to, $subject, $messageContent, implode("\r\n", $headers))) {
     echo 'success';
 } else {
     echo 'error';
