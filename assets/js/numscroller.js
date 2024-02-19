@@ -65,7 +65,7 @@
     };
     function numberRoller(slno){
             var min=$('.roller-title-number-'+slno).attr('data-min');
-            var max=$('.roller-title-number-'+slno).attr('data-max');
+            var max=$('.roller-title-number-'+slno).attr('data-max' );
             var timediff=$('.roller-title-number-'+slno).attr('data-delay');
             var increment=$('.roller-title-number-'+slno).attr('data-increment');
             var numdiff=max-min;
@@ -76,13 +76,14 @@
             numberRoll(slno,min,max,increment,timeout);
             
     }
-    function numberRoll(slno,min,max,increment,timeout){//alert(slno+"="+min+"="+max+"="+increment+"="+timeout);
+    function numberRoll(slno,min,max,increment,timeout){
+        //alert(slno+"="+min+"="+max+"="+increment+"="+timeout);
         if(min<=max){
-            $('.roller-title-number-'+slno).html(min);
+            $('.roller-title-number-'+slno).html(min );
             min=parseInt(min)+parseInt(increment);
             setTimeout(function(){numberRoll(eval(slno),eval(min),eval(max),eval(increment),eval(timeout))},timeout);
         }else{
-            $('.roller-title-number-'+slno).html(max);
+            $('.roller-title-number-'+slno).html(max + ' %');
         }
     }
 })(jQuery);

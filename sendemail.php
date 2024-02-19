@@ -8,7 +8,9 @@ ini_set('sendmail_from', 'contact@jgs-events.com'); // Adresse e-mail expéditeu
 
 $headers = array();
 $headers[] = "MIME-Version: 1.0";
-$headers[] = "Content-type: text/plain; charset=iso-8859-1";
+$headers[] = "Content-type: text/plain; charset=UTF-8";
+$headers[] = "From: contact@jgs-events.com";
+$headers[] = "Reply-To: contact@jgs-events.com";
 
 // Récupération des données du formulaire
 $name = $_POST['name'] ?? '';

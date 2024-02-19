@@ -14,7 +14,7 @@ function sendEmail($to, $subject, $message, $from)
     $headers   = [
         "MIME-Version: 1.0",
         "Content-type: text/plain; charset=UTF-8", // Utilisation de l'encodage UTF-8
-        "From: {$from} <{$from}>",
+        "From: {$from}",
         "Reply-To: <{$from}>"
     ];
 
@@ -44,7 +44,7 @@ $messageContent .= "Society: $company\n";
 $messageContent .= "Message:\n$message";
 
 // Envoi de l'e-mail
-if (sendEmail($to, $subject, $messageContent, $from)) {
+if (sendEmail($to, $subject, $messageContent,"contact@jgs-events.com")) {
     echo 'Le message a été envoyé avec succès.';
 } else {
     echo 'Une erreur est survenue lors de l\'envoi du message.';

@@ -1,33 +1,4 @@
-/*
 
-@Author: Tanislav Robert Marian.
-@URL: http://www.woctech.ro
-
-This file contains the styling for the actual theme, this
-is the file you need to edit to change the look of the
-theme.
-
-
-// Table of contents //
-
-		Body
-	00.  General
-	01.  Header & footer
-	02.  Homepage slider
-	03.  About us
-	04.  Facts
-	05.  Services
-	06.  Portfolio
-	07.  Team
-	08.  Pricing
-	09.  Testimonials
-	10. Blog
-	11. Contact & Subscribe
-	12. Single Project
-	13. Services page
-	14. Contact page
-
-*/
 @import url(https://fonts.googleapis.com/css?family=Lato:400,900,300);
 @import 'https://fonts.googleapis.com/css?family=Cantarell:400,700';
 
@@ -958,9 +929,9 @@ b i:last-child {
 
 .box-intro h1{
 		font-size: 40px;
-	  margin-top: 35px;
-	  color: #6581A6;
-	  letter-spacing: 40px;
+        margin-top: 35px;
+        color: white;
+        letter-spacing: 40px;
 		font-weight: 700;
 }
 
@@ -969,7 +940,8 @@ b i:last-child {
 		font-size: 14px;
 		letter-spacing: 10px;
 		text-transform: uppercase;
-		color: #6581A6;
+    	/* color: #6581A6; */
+		color: white;
 		line-height: 4;
 		font-weight: 700;
 }
@@ -1195,12 +1167,12 @@ b i:last-child {
 /* #####  Footer  ##### */
 
 footer.main-footer{
-		background-color: #ffeedb;
+		background-color: #F2EBEE;
 		z-index: 0;
 }
 
 footer p {
-    color: #777;
+    color: #6581A6;
 }
 
 footer a {
@@ -1218,7 +1190,7 @@ footer a:hover {
 }
 
 .footer-widget h4 {
-		color: #777;
+		color: #6581A6;
 		text-transform: uppercase;
 		margin-bottom: 30px;
 		font-size: 15px;
@@ -1236,7 +1208,7 @@ footer a:hover {
     font-size: 15px;
     width: 25px;
     height: 30px;
-    color: #777;
+    color: #6581A6;
     display: block;
     border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -1301,7 +1273,7 @@ footer a:hover {
 }
 
 .contact-widget ul li p a {
-   	color: #777;
+   	color: #6581A6;
 }
 
 .contact-widget p {
@@ -1313,6 +1285,9 @@ footer a:hover {
    	text-decoration: none;
 }
 
+.twitter-widget  {
+   	color: #6581A6;
+}
 .twitter-widget ul li {
    	margin-bottom: 20px;
 }
@@ -1322,7 +1297,7 @@ footer a:hover {
 }
 
 .company-links a{
-	color: #777;
+	color: #6581A6;
 }
 
 .company-links a:hover{
@@ -1332,7 +1307,7 @@ footer a:hover {
 .copyright-section {
     padding: 30px 0;
     font-size: 15px;
-        border-top: 1px solid #131313;
+        border-top: 1px solid #6581A6;
 }
 
 .copyright-section p {
@@ -1960,7 +1935,7 @@ footer a:hover {
 }
 
 .flexslider p {
-    color: #333;
+    color: white;
     letter-spacing: 2px;
     text-align: center;
 }
@@ -2355,7 +2330,7 @@ ul.services-list li{
 
 .srv_pricing {
 		padding: 0 0 100px;
-		background: #ffeedb;
+		background: #F2EBEE;
 		border-bottom: 15px double #fff;
 }
 
